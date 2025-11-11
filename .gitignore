@@ -1,0 +1,38 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# Build
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+out/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.ipr
+*.iml
+*.bak
+*.swp
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.local
+application-*.yml
+application-*.properties
+
+# Project-specific
+/src/main/resources/static/js/bundle.js
+/src/main/resources/static/css/
