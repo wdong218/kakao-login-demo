@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    com.example.kakao: INFO
+
+kakao:
+  auth:
+    client: dc3741c4aaad93067048db400f8fff38:CHANGE_ME   # 카카오 REST API 키
+    redirect: http://localhost:8080/auth/login/kakao
+  api:
+    token-uri: https://kauth.kakao.com/oauth/token
+    userinfo-uri: https://kapi.kakao.com/v2/user/me
+
