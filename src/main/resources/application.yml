@@ -7,9 +7,8 @@ logging:
 
 kakao:
   auth:
-    client: dc3741c4aaad93067048db400f8fff38:CHANGE_ME   # 카카오 REST API 키
+    client: f1c8e34b151607c955acf70fe603169e
     redirect: http://localhost:8080/auth/login/kakao
   api:
     token-uri: https://kauth.kakao.com/oauth/token
     userinfo-uri: https://kapi.kakao.com/v2/user/me
-
