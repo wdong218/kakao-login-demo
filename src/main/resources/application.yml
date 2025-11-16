@@ -12,3 +12,15 @@ kakao:
   api:
     token-uri: https://kauth.kakao.com/oauth/token
     userinfo-uri: https://kapi.kakao.com/v2/user/me
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kakao_login_demo
+    username: postgres
+    password: 8890
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true

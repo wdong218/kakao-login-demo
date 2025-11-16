@@ -4,12 +4,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Map;
-
-@Getter @ToString
+@Getter
+@ToString
 public class KakaoUserResponse {
+
     private Long id;
-    private Map<String, Object> properties;
+
+    private Properties properties;
+
     @JsonProperty("kakao_account")
-    private Map<String, Object> kakaoAccount;
+    private KakaoAccount kakaoAccount;
+
+    @Getter
+    @ToString
+    public static class Properties {
+        private String nickname;
+
+        @JsonProperty("profile_image")
+        private String profileImage;
+
+        @JsonProperty("thumbnail_image")
+        private String thumbnailImage;
+    }
+
+    @Getter
+    @ToString
+    public static class KakaoAccount {
+        private String email;
+    }
 }

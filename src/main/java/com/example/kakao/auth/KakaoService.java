@@ -2,6 +2,8 @@ package com.example.kakao.auth;
 
 import com.example.kakao.dto.KakaoTokenResponse;
 import com.example.kakao.dto.KakaoUserResponse;
+import com.example.kakao.user.User;
+import com.example.kakao.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,14 +14,19 @@ import org.springframework.stereotype.Service;
 public class KakaoService {
 
     private final KakaoClient kakaoClient;
+    private final UserService userService;
 
-    public KakaoUserResponse loginWithCode(String code) {
+    public User loginWithCode(String code) {
+        // 1. 인가 코드로 토큰 발급
         KakaoTokenResponse token = kakaoClient.exchangeCodeForToken(code);
-        KakaoUserResponse user = kakaoClient.getUserMe(token.getAccessToken());
 
-        // TODO: 여기서 DB 조회 후 신규면 회원가입, 기가입이면 로그인 처리
-        // TODO: 우리 서비스용 JWT 발급 지점
-        log.info("Kakao login flow done. kakaoId={}", user.getId());
+        // 2. 토큰으로 카카오 사용자 정보 조회
+        KakaoUserResponse kakaoUser = kakaoClient.getUserMe(token.getAccessToken());
+
+        // 3. DB에서 유저 찾거나 없으면 새로 생성
+        User user = userService.loginOrRegister(kakaoUser);
+
+        log.info("Kakao login flow done. kakaoId={}, userId={}", kakaoUser.getId(), user.getId());
         return user;
     }
 }

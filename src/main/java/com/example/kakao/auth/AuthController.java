@@ -1,6 +1,6 @@
 package com.example.kakao.auth;
 
-import com.example.kakao.dto.KakaoUserResponse;
+import com.example.kakao.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,7 @@ public class AuthController {
 
     @GetMapping("/auth/login/kakao")
     public ResponseEntity<?> kakaoCallback(@RequestParam("code") String code) {
-        KakaoUserResponse user = kakaoService.loginWithCode(code);
-        // 맛보기 단계: 유저 정보 그대로 반환
-        return ResponseEntity.ok(user);
+        User user = kakaoService.loginWithCode(code);  // 🔥 DB 분기까지 끝난 User
+        return ResponseEntity.ok(user);                // 일단은 그대로 JSON으로 확인
     }
 }
